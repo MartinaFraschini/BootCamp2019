@@ -1,0 +1,142 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  Introduction to Measure Theory, Jan Ertl \\
+  Martina Fraschini
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Exercise 1.3}\\
+Which of the following are algebras? Which are $\sigma$-algebras?
+\begin{itemize}
+\item $\mathcal{G}_1=\{A:A\subset\mathds{R}, A\textrm{ open}\}$
+	\begin{enumerate}
+	\item $\emptyset \in\mathcal{G}_1$, as the empty set is a subset of the field of real numbers.
+	\item Given $A\in\mathcal{G}_1$, then $A^c\notin\mathcal{G}_1$, as $A^c$ is a closed set by definition (a closed set is defined as the complement set of an open set).
+	\end{enumerate}
+	Therefore, $\mathcal{G}_1$ is neither an algebra or a $\sigma$-algebra.
+\item $\mathcal{G}_2=\{A:A\textrm{ is a finite union of intervals of the form } (a,b], (-\infty,b], (a,\infty)\}$
+	\begin{enumerate}
+	\item If we assume that $a=b$ gives the empty set, then $\emptyset \in\mathcal{G}_2$.
+	\item Given $A\in\mathcal{G}_2$, then $A^c$ is a finite union of intervals of the form $(a,b]$, $(-\infty,b]$, $(a,\infty)$ as well. Thus, $A^c\in\mathcal{G}_2$.
+	\item $\mathcal{G}_2$ is, by definition, closed under finite unions (but not under countable unions).
+	\end{enumerate}
+	Therefore, $\mathcal{G}_2$ is an algebra but not a $\sigma$-algebra.
+\item $\mathcal{G}_3=\{A:A\textrm{ is a countable union of } (a,b], (-\infty,b], (a,\infty)\}$
+	\begin{enumerate}
+	\item As before, if we assume that $a=b$ gives the empty set, then $\emptyset \in\mathcal{G}_3$.
+	\item Given $A\in\mathcal{G}_3$, then $A^c$ is a countable union of intervals of the form $(a,b]$, $(-\infty,b]$, $(a,\infty)$ as well. Thus, $A^c\in\mathcal{G}_3$.
+	\item $\mathcal{G}_3$ is, by definition, closed under countable unions.
+	\end{enumerate}
+	Therefore, $\mathcal{G}_3$ is a $\sigma$-algebra, and consequently an algebra.
+\end{itemize}
+\bigskip
+
+\noindent\textbf{Exercise 1.7}\\
+If $X$ is a nonempty set and $\mathcal{A}$ is any $\sigma$-algebra, then why $\{\emptyset,X\}\subset\mathcal{A}\subset\mathcal{P}(X)$?\\
+By definition, $X$ is nonempty and therefore it cannot be a $\sigma$-algebra. If we add the empty set to obtain $\{\emptyset,X\}$, then it is trivial to see how this is the smallest combination of sets that generates a $\sigma$-algebra. \\
+The power set $\mathcal{P}(X)$ is defined as the sets of all the possible subsets of $X$. Thus, all the possible $\sigma$-algebras are already contained in the in $\mathcal{P}(X)$ and there is no subset that can be added.\\
+
+\noindent\textbf{Exercise 1.10}\\
+Prove that the intersection of $\sigma$-algebras $\bigcap_\alpha \mathcal{S}_\alpha$ is a $\sigma$-algebra as well.
+\begin{enumerate}
+\item Since each $\mathcal{S}_\alpha$ is a $\sigma$-algebra by definition, it means that each family of subsets contains the empty set. Therefore, the intersection of all the $\mathcal{S}_\alpha$ contains as well the empty set: $\emptyset\in\bigcap_\alpha \mathcal{S}_\alpha$.
+\item $A\in\bigcap_\alpha \mathcal{S}_\alpha \Rightarrow A\in\mathcal{S}_\alpha ~\forall\alpha$. Since each $\mathcal{S}_\alpha$ is a $\sigma$-algebra, we have that also $A^c\in\mathcal{S}_\alpha ~\forall\alpha$. Therefore, it is also true that $A^c\in\bigcap_\alpha \mathcal{S}_\alpha$.
+\item Let $A_i\in\bigcap_\alpha \mathcal{S}_\alpha$ for $i\neq\alpha$. Then $A_i\in\mathcal{S}_\alpha~ \forall i,\alpha$. By definition of $\sigma$-algebra, we also have that $\bigcup_i A_i\in\mathcal{S}_\alpha ~\forall\alpha$. Thus, $\bigcup_i A_i\in\bigcap_\alpha \mathcal{S}_\alpha$.
+\end{enumerate}
+\bigskip
+
+
+\noindent\textbf{Exercise 1.22}\\
+Prove the following:
+\begin{itemize}
+\item $\mu$ is monotone.\\ Let $A\subset B$, then we can consider $B$ as the union of two disjoint sets: $B=A \cup (B\setminus A)$. Therefore, since the measure is a positive and addictive function, we have that $\mu(B)=\mu(A)+\underbrace{\mu(B\setminus A)}_{\geq 0} \geq \mu(A).$ 
+\item $\mu$ is countably addictive.\\ $\mu(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} \mu(A_i) - \underbrace{\textstyle\sum \mu(\text{all possible intersections})}_{\geq 0} \leq \sum_{i=1}^{\infty} \mu(A_i)$.
+\end{itemize}
+\bigskip
+
+\noindent\textbf{Exercise 1.23}\\
+Show that $\lambda(A)=\mu(A\cap B)$ is a measure.
+\begin{enumerate}
+\item $\lambda(\emptyset)=\mu(\emptyset\cap B)=\mu(\emptyset)=0$.
+\item $\lambda(\bigcup_{i=1}^{\infty}A_i)=\mu(\bigcup_{i=1}^{\infty}A_i\cap B)=\mu(\bigcup_{i=1}^{\infty}(A_i\cap B)) = \sum_{i=1}^{\infty}\mu(A_i\cap B)=\sum_{i=1}^{\infty} \lambda(A_i)$, where $A_i\neq A_j$ for $i\neq j$.
+\end{enumerate}
+\bigskip
+
+\noindent\textbf{Exercise 1.26}\\
+Prove that $\left(A_{1} \supset A_{2} \supset A_{3} \supset \cdots, A_{i} \in \mathcal{S}, \mu\left(A_{1}\right)<\infty\right) \Rightarrow\left(\lim _{n \rightarrow \infty} \mu\left(A_{n}\right)=\mu\left(\bigcap_{i=1}^{\infty} A_{i}\right)\right)$.\\
+Let $B_i=A_1\setminus A_i$ and $\mu(B_i)=\mu(A_1)-\mu(A_i)$.\\
+We have that $\mu(\bigcup_{n=1}^{\infty} B_n)=\mu(A_1\setminus\bigcap_{n=1}^{\infty}A_n)=\mu(A_1)-\mu(\bigcap_{n=1}^{\infty}A_n)$.\\
+We also know (Thm 1.25) that $\mu(\bigcup_{n=1}^{\infty} B_n)=\lim_{n\rightarrow\infty}\mu(B_n)=\mu(A_1)-\lim_{n\rightarrow\infty}\mu(A_n)$.\\
+It follows that $\lim_{n\rightarrow\infty}\mu(A_n)=\mu(\bigcap_{n=1}^{\infty}A_n)$.
+
+\end{document}
+

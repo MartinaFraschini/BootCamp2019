@@ -1,0 +1,153 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  DSGE Models, Prof. Kerk Phillips \\
+  Martina Fraschini
+\end{flushleft}
+
+\vspace{5mm}
+
+\noindent\textbf{Exercise 1}\\
+In the Brock and Mirman's model the households solves the following dynamic program:
+\[ V\left(K_{t}, z_{t}\right)=\max _{K_{t+1}} \ln \left(e^{z_{t}} K_{t}^{\alpha}-K_{t+1}\right)+\beta E_{t}\left\{V\left(K_{t+1}, z_{t+1}\right)\right\}, \]
+where the law of motion is:
+\[ z_{t+1}=\rho z_{t}+\varepsilon_{t} ; \quad \varepsilon_{t} \sim i . i . d\left(0, \sigma^{2}\right). \]
+The associated Euler equation is:
+\[ \frac{1}{e^{z_{t}} K_{t}^{\alpha}-K_{t+1}}=\beta E_{t}\left\{\frac{\alpha e^{z_{t+1}} K_{t+1}^{\alpha-1}}{e^{z_{t+1}} K_{t+1}^{\alpha}-K_{t+2}}\right\}. \]
+In order to find an algebraic solution for the policy function we use the ``guess and verify" method. We guess that the policy function is in the form of $K_{t+1}=A e^{z_{t}} K_{t}^{\alpha}$ and we substitute it in the Euler equation. We obtain:
+\[ \frac{1}{e^{z_{t}} K_{t}^{\alpha}-A e^{z_{t}} K_{t}^{\alpha}}=\beta E_{t}\left\{\frac{\alpha e^{z_{t+1}} A^{\alpha-1} e^{(\alpha-1)z_{t}} K_{t}^{\alpha^2-\alpha}}{e^{z_{t+1}} A^\alpha e^{\alpha z_{t}} K_{t}^{\alpha^2}-A^{1+\alpha} e^{z_{t+1}}e^{\alpha z_{t}} K_{t}^{\alpha^2}}\right\}, \]
+\[ \frac{1}{(1-A) e^{z_{t}} K_{t}^{\alpha}}=\beta E_{t}\left\{\frac{\alpha A^{-1}e^{-z_t} K_t^{-\alpha} A^\alpha e^{\alpha z_{t}} K_{t}^\alpha e^{z_{t+1}}}{(1-A)A^\alpha e^{\alpha z_{t}} K_{t}^{\alpha^2}e^{z_{t+1}}}\right\}, \]
+\[ \frac{1}{(1-A) e^{z_{t}} K_{t}^{\alpha}}=\beta E_{t}\left\{\frac{\alpha}{(1-A)A e^{z_{t}} K_{t}^{\alpha}}\right\}, \]
+\[ \alpha\beta=\frac{(1-A)A e^{z_{t}} K_{t}^{\alpha}}{(1-A) e^{z_{t}} K_{t}^{\alpha}}, \]
+\[ A=\alpha\beta. \]
+Therefore the policy function is $K_{t+1}=\alpha\beta~ e^{z_{t}} K_{t}^{\alpha}$.\\
+
+\noindent\textbf{Exercise 2}\\
+Our baseline model with:
+\[ u\left(c_{t}, \ell_{t}\right)=\ln c_{t}+a \ln \left(1-\ell_{t}\right), \]
+and \[ f\left(K_{t}, L_{t}, z_{t}\right)=e^{z_{t}} K_{t}^{\alpha} L_{t}^{1-\alpha}, \]
+has the following characterizing equations:
+\[ c_{t}=(1-\tau)\left[w_{t} \ell_{t}+\left(r_{t}-\delta\right) k_{t}\right]+k_{t}+T_{t}-k_{t+1}, \]
+\[ \frac{1}{c_t}=\beta E_{t}\left\{\frac{1}{c_{t+1}}\left[\left(r_{t+1}-\delta\right)(1-\tau)+1\right]\right\}, \]
+\[ -\frac{a}{1-\ell_{t}}=\frac{1}{c_t} w_{t}(1-\tau), \]
+\[ r_{t}=\alpha e^{z_{t}} k_{t}^{\alpha-1} \ell_{t}^{1-\alpha}, \]
+\[ w_{t}=(1-\alpha)e^{z_{t}} k_{t}^{\alpha} \ell_{t}^{-\alpha}, \]
+\[ \tau\left[w_{t} \ell_{t}+\left(r_{t}-\delta\right) k_{t}\right]=T_{t}, \]
+\[ z_{t}=\left(1-\rho_{z}\right) \overline{z}+\rho_{z} z_{t-1}+\epsilon_{t}^{z} ; \quad \epsilon_{t}^{z} \sim \text { i.i.d.}\left(0, \sigma_{z}^{2}\right). \]
+In this case we can't use the same tricks as in Exercise 1 to solve for the policy function because the model is too complex and it's impossible to guess a good algebraic solution.\\
+
+\noindent\textbf{Exercise 3}\\
+Our baseline model with:
+\[ u\left(c_{t}, \ell_{t}\right)=\frac{c_{t}^{1-\gamma}-1}{1-\gamma}+a \ln \left(1-\ell_{t}\right), \]
+and \[ f\left(K_{t}, L_{t}, z_{t}\right)=e^{z_{t}} K_{t}^{\alpha} L_{t}^{1-\alpha}, \]
+has the following characterizing equations:
+\[ c_{t}=(1-\tau)\left[w_{t} \ell_{t}+\left(r_{t}-\delta\right) k_{t}\right]+k_{t}+T_{t}-k_{t+1}, \]
+\[ c_t^{-\gamma}=\beta E_{t}\left\{c_{t+1}^{-\gamma}\left[\left(r_{t+1}-\delta\right)(1-\tau)+1\right]\right\}, \]
+\[ -\frac{a}{1-\ell_{t}}=c_t^{-\gamma} w_{t}(1-\tau), \]
+\[ r_{t}=\alpha e^{z_{t}} k_{t}^{\alpha-1} \ell_{t}^{1-\alpha}, \]
+\[ w_{t}=(1-\alpha)e^{z_{t}} k_{t}^{\alpha} \ell_{t}^{-\alpha}, \]
+\[ \tau\left[w_{t} \ell_{t}+\left(r_{t}-\delta\right) k_{t}\right]=T_{t}, \]
+\[ z_{t}=\left(1-\rho_{z}\right) \overline{z}+\rho_{z} z_{t-1}+\epsilon_{t}^{z} ; \quad \epsilon_{t}^{z} \sim \text { i.i.d.}\left(0, \sigma_{z}^{2}\right). \]\\
+
+\noindent\textbf{Exercise 4}\\
+Our baseline model with:
+\[ u\left(c_{t}, \ell_{t}\right)=\frac{c_{t}^{1-\gamma}-1}{1-\gamma}+a \frac{\left(1-\ell_{t}\right)^{1-\xi}-1}{1-\xi}, \]
+and \[ f\left(K_{t}, L_{t}, z_{t}\right)=e^{z_{t}}\left[\alpha K_{t}^{\eta}+(1-\alpha) L_{t}^{\eta}\right]^{\frac{1}{\eta}}, \]
+has the following characterizing equations:
+\[ c_{t}=(1-\tau)\left[w_{t} \ell_{t}+\left(r_{t}-\delta\right) k_{t}\right]+k_{t}+T_{t}-k_{t+1}, \]
+\[ c_t^{-\gamma}=\beta E_{t}\left\{c_{t+1}^{-\gamma}\left[\left(r_{t+1}-\delta\right)(1-\tau)+1\right]\right\}, \]
+\[ -a(1-\ell_{t})^{-\xi}=c_t^{-\gamma} w_{t}(1-\tau), \]
+\[ r_{t}=\alpha e^{z_{t}}, \]
+\[ w_{t}=(1-\alpha)e^{z_{t}}, \]
+\[ \tau\left[w_{t} \ell_{t}+\left(r_{t}-\delta\right) k_{t}\right]=T_{t}, \]
+\[ z_{t}=\left(1-\rho_{z}\right) \overline{z}+\rho_{z} z_{t-1}+\epsilon_{t}^{z} ; \quad \epsilon_{t}^{z} \sim \text { i.i.d.}\left(0, \sigma_{z}^{2}\right). \]\\
+
+\noindent\textbf{Exercise 5}\\
+Assuming $\ell_t=1$ and considering the market clearing condition $L_t=\ell_t=1$, we have that our baseline model with:
+\[ u\left(c_{t}\right)=\frac{c_{t}^{1-\gamma}-1}{1-\gamma}, \]
+and \[ f\left(K_{t}, L_{t}, z_{t}\right)=K_{t}^{\alpha}\left(e^{z_{t}}\right)^{1-\alpha}, \]
+has the following characterizing equations:
+\[ c_{t}=(1-\tau)\left[w_{t} +\left(r_{t}-\delta\right) k_{t}\right]+k_{t}+T_{t}-k_{t+1}, \]
+\[ c_t^{-\gamma}=\beta E_{t}\left\{c_{t+1}^{-\gamma}\left[\left(r_{t+1}-\delta\right)(1-\tau)+1\right]\right\}, \]
+\[ c_t^{-\gamma} w_{t}(1-\tau)=0, \]
+\[ r_{t}=\alpha k_{t}^{\alpha-1}\left(e^{z_{t}}\right)^{1-\alpha}, \]
+\[ w_{t}=0, \]
+\[ \tau\left[w_{t}+\left(r_{t}-\delta\right) k_{t}\right]=T_{t}, \]
+\[ z_{t}=\left(1-\rho_{z}\right) \overline{z}+\rho_{z} z_{t-1}+\epsilon_{t}^{z} ; \quad \epsilon_{t}^{z} \sim \text { i.i.d.}\left(0, \sigma_{z}^{2}\right). \]
+The steady state version of this equations is:
+\[ \bar{c}=(1-\tau)\left[\bar{w} +\left(\bar{r}-\delta\right) \bar{k}\right]+\bar{T}, \]
+\[ \bar{c}^{-\gamma}=\beta E_{t}\left\{\bar{c}^{-\gamma}\left[\left(\bar{r}-\delta\right)(1-\tau)+1\right]\right\}, \]
+\[ \bar{c}^{-\gamma} \bar{w}(1-\tau)=0, \]
+\[ \bar{r}=\alpha \bar{k}^{\alpha-1}\left(e^{\bar{z}}\right)^{1-\alpha}, \]
+\[ \bar{w}=0, \]
+\[ \tau\left[\bar{w}+\left(\bar{r}-\delta\right) \bar{k}\right]=\bar{T}. \]
+
+\end{document}
+
